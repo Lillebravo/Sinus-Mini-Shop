@@ -64,12 +64,14 @@ class Product {
     this.name = document.createElement("h2");
     this.color = document.createElement("h3");
     this.description = document.createElement("p");
+    this.button = document.createElement("button");
 
     this.img.setAttribute("src", imageSrc);
     this.img.setAttribute("alt", imageAlt);
     this.name.innerHTML = nameText;
     this.color.innerHTML = colorText;
     this.description.innerHTML = descriptionText;
+    this.button.innerHTML = "add to cart";
     this.id = this.article.setAttribute("id", id);
 
     this.figure.appendChild(this.img);
@@ -78,7 +80,7 @@ class Product {
   }
 
   initialiseProduct() {
-    const elements = [this.figure, this.name, this.color, this.description];
+    const elements = [this.figure, this.name, this.color, this.description, this.button];
     elements.forEach((element) => this.article.appendChild(element));
   }
 }
