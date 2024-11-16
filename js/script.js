@@ -28,21 +28,66 @@ const footer = document.querySelector("footer section");
 footer.children[1].querySelector("p").innerHTML =
   "Sinus skateboards<br>Malmöleden 22 <br>320 20, Malmö";
 
-// 8. 
+// 8.
 const allPTags = document.querySelectorAll("body p");
-allPTags.forEach(paragraph => {
-    paragraph.style.color = "blue";
+allPTags.forEach((paragraph) => {
+  paragraph.style.color = "blue";
 });
 
 // 9.
 const allButtons = document.querySelectorAll("button");
-allButtons.forEach(button => {
-    button.innerHTML = "add to cart"
+allButtons.forEach((button) => {
+  button.innerHTML = "add to cart";
 });
 
-// 10. 
+// 10.
 const menuHome = footer.querySelector("article a");
-menuHome.classList.add("active"); 
+menuHome.classList.add("active");
 console.log(menuHome);
 
-// 11. 
+// 11.
+document.querySelector("header img").classList.remove("logo");
+
+// 12.
+const newMenuOption = document.createElement("a");
+newMenuOption.innerHTML = "About Us";
+newMenuOption.setAttribute("href", "#");
+footer.querySelector("article").appendChild(newMenuOption);
+
+// 13.
+class Product {
+  constructor(imageSrc, imageAlt, nameText, colorText, descriptionText) {
+    this.figure = document.createElement("figure");
+    this.img = document.createElement("img");
+    this.name = document.createElement("h2");
+    this.color = document.createElement("h3");
+    this.description = document.createElement("p");
+
+    this.img.setAttribute("src", imageSrc);
+    this.img.setAttribute("alt", imageAlt);
+    this.name.innerHTML = nameText;
+    this.color.innerHTML = colorText;
+    this.description.innerHTML = descriptionText;
+
+    this.figure.appendChild(this.img);
+  }
+
+  initialiseProduct(parentElement) {
+    const elements = [this.figure, this.name, this.color, this.description];
+    elements.forEach((element) => parentElement.appendChild(element));
+  }
+}
+
+const products = document.querySelector("main");
+const newProduct = document.createElement("article");
+products.appendChild(newProduct);
+
+const hoodieForrest = new Product(
+  "img/hoodie-forrest.png",
+  "hoodie-forrest",
+  "Sinus Hoodie",
+  "Forrest",
+  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, dolores."
+);
+
+hoodieForrest.initialiseProduct(newProduct);
