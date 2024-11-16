@@ -57,7 +57,8 @@ footer.querySelector("article").appendChild(newMenuOption);
 
 // 13.
 class Product {
-  constructor(imageSrc, imageAlt, nameText, colorText, descriptionText) {
+  constructor(imageSrc, imageAlt, nameText, colorText, descriptionText, id) {
+    this.article = document.createElement("article");
     this.figure = document.createElement("figure");
     this.img = document.createElement("img");
     this.name = document.createElement("h2");
@@ -69,29 +70,30 @@ class Product {
     this.name.innerHTML = nameText;
     this.color.innerHTML = colorText;
     this.description.innerHTML = descriptionText;
+    this.id = this.article.setAttribute("id", id);
 
     this.figure.appendChild(this.img);
+
+    this.initialiseProduct();
   }
 
-  initialiseProduct(parentElement) {
+  initialiseProduct() {
     const elements = [this.figure, this.name, this.color, this.description];
-    elements.forEach((element) => parentElement.appendChild(element));
+    elements.forEach((element) => this.article.appendChild(element));
   }
 }
-
-const products = document.querySelector("main");
-const newProduct = document.createElement("article");
-products.appendChild(newProduct);
 
 const hoodieForrest = new Product(
   "img/hoodie-forrest.png",
   "hoodie-forrest",
   "Sinus Hoodie",
   "Forrest",
-  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, dolores."
+  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, dolores.",
+  "Forrest"
 );
 
-hoodieForrest.initialiseProduct(newProduct);
+const products = document.querySelector("main");
+products.appendChild(hoodieForrest.article);
 
 // 14. 
 logo.addEventListener("click", () => {
@@ -103,7 +105,6 @@ const articles = products.querySelectorAll("article");
 articles[0].setAttribute("id", "Ash");
 articles[1].setAttribute("id", "Fire");
 articles[2].setAttribute("id", "Water");
-articles[3].setAttribute("id", "Forrest");
 articles.forEach(article => {
     article.addEventListener("click", () => {
         console.log("Hi, I´m article " + article.id);
