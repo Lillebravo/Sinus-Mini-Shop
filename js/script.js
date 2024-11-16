@@ -46,7 +46,8 @@ menuHome.classList.add("active");
 console.log(menuHome);
 
 // 11.
-document.querySelector("header img").classList.remove("logo");
+const logo = document.querySelector("header img");
+logo.classList.remove("logo");
 
 // 12.
 const newMenuOption = document.createElement("a");
@@ -91,3 +92,21 @@ const hoodieForrest = new Product(
 );
 
 hoodieForrest.initialiseProduct(newProduct);
+
+// 14. 
+logo.addEventListener("click", () => {
+    console.log("found you!");
+});
+
+// 15. 
+const articles = products.querySelectorAll("article");
+articles[0].setAttribute("id", "Ash");
+articles[1].setAttribute("id", "Fire");
+articles[2].setAttribute("id", "Water");
+articles[3].setAttribute("id", "Forrest");
+articles.forEach(article => {
+    article.addEventListener("click", () => {
+        console.log("Hi, I´m article " + article.id);
+    });
+});
+
